@@ -7,10 +7,6 @@ use Illuminate\Support\Facades\View;
 
 class UserController extends Controller
 {
-    // public function index(){
-    //     return 'HELLO';
-    // }
-
     //Using Middleware
     public function __construct()
     {

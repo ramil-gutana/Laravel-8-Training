@@ -19,16 +19,16 @@ class BlogController extends Controller
         $blog->save();
         return 'BLOG CREATED SUCCESSFULLY';
     }
-    public function edit(int $id)
+    public function edit(Blog $blog)
     {
-        return view('update_blog',['blog'=>Blog::find($id)]);
+        return view('update_blog',['blog'=>$blog]);
     }
-    public function update(Request $request,int $id)
+    public function update(Request $request,Blog $blog)
     {
-        $blog=Blog::find($id);
-        $blog->title=$request->title;
-        $blog->content=$request->content;
-        $blog->save();
+        $blog->update([
+            'title'=>$request->title,
+            'content'=>$request->content
+        ]);
         return 'BLOG Updated SUCCESSFULLY';
     }
 }

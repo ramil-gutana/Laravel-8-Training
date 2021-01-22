@@ -22,5 +22,5 @@ Route::get('/', function () {
 Route::get('/user',UserController::class);
 Route::get('/blog',[BlogController::class,'create']);
 Route::post('/blog',[BlogController::class,'store']);
-Route::get('/blog/{id}/edit',[BlogController::class,'edit']);
-Route::put('/blog/{id}',[BlogController::class,'update']);
+Route::get('/blog/{blog}/edit',[BlogController::class,'edit']);
+Route::put('/blog/{blog}',[BlogController::class,'update']);
