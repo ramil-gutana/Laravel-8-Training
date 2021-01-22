@@ -12,10 +12,16 @@
     <form action="{{url('/blog')}}" method="POST">
         @csrf
         <div>
-            <input type="text" name="title" placeholder="Title">
+            <input type="text" name="title" placeholder="Title" value="{{old('title')}}">
+            @error('title')
+                <span>{{$message}}</span>
+            @enderror
         </div>
         <div>
             <textarea name="content"  cols="30" rows="10" placeholder="Description"></textarea>
+            @error('content')
+             <span>{{$message}}</span>
+            @enderror
         </div>
         <div>
             <button type="submit">Submit</button>
