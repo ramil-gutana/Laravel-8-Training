@@ -12,7 +12,8 @@ class UserController extends Controller
     // }
 
     //Using Middleware
-    public function __construct(){
+    public function __construct()
+    {
         $this->middleware('auth');
     }
 
