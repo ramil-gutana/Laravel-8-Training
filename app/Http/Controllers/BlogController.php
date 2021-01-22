@@ -18,7 +18,7 @@ class BlogController extends Controller
     {
 
         $request->validate([
-            'title'=>'required|min:5|regex:/^[A-Za-z0-9. \'"-]+$/',
+            'title'=>'required|min:5|regex:/^[A-Za-z0-9. \'",-]+$/',
             'content'=>'required|min:15',
         ]);
         $blog=new Blog();
