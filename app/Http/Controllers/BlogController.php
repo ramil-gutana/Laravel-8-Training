@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use Illuminate\Http\Request;
+use App\Http\Traits\CreateBlog;
+use App\Http\Traits\UpdateBlog;
 
 class BlogController extends Controller
 {
+    use CreateBlog,UpdateBlog;
+
     public function create()
     {
         return view('create_blog');
@@ -14,15 +18,7 @@ class BlogController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => 'required|min:5|regex:/^[A-Za-z0-9. \'",-]+$/',
-            'content' => 'required|min:15',
-        ]);
-        $blog = new Blog();
-        $blog->title = $request->title;
-        $blog->content = $request->content;
-        $blog->save();
-
+        $this->createBlog($request->all());
         return 'BLOG CREATED SUCCESSFULLY';
     }
 
@@ -33,16 +29,7 @@ class BlogController extends Controller
 
     public function update(Request $request, Blog $blog)
     {
-        $request->validate([
-            'title' => 'required|min:5|regex:/^[A-Za-z0-9. \'",-]+$/',
-            'content' => 'required|min:15',
-        ]);
-
-        $blog->update([
-            'title' => $request->title,
-            'content' => $request->content,
-        ]);
-
+        $this->updateBlog($request->all(),$blog);
         return 'BLOG Updated SUCCESSFULLY';
     }
 }
